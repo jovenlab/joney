@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv"
 import { sql } from "./config/db.js";
+import rateLimiter from "./middleware/rateLimiter.js";
 
 dotenv.config();
 
@@ -8,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Middleware
+app.use(rateLimiter)
 app.use(express.json());
 
 async function initDB(){
@@ -106,7 +108,6 @@ app.get("/api/transactions/summary/:userId",  async(req, res) => {
             SELECT COALESCE(SUM(amount), 0) as income FROM transactions
             WHERE user_id = ${userId} AND amount > 0
         `
-
         const expensesResult = await sql`
             SELECT COALESCE(SUM(amount), 0) as expenses FROM transactions
             WHERE user_id = ${userId} AND amount < 0
