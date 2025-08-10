@@ -1,5 +1,6 @@
 import { sql } from "../config/db.js";
 
+// * /api/transactions/:userId
 export async function getTransactionsByUserId(req, res){
 
     try{
@@ -41,7 +42,7 @@ export async function createTransaction(req, res){
     }
 
 }
-
+// * /api/transactions/:id
 export async function deleteTransaction(req, res){
 
     try{
@@ -67,7 +68,7 @@ export async function deleteTransaction(req, res){
     }
 
 }
-
+// * /api/transactions/summary/:userId
 export async function getSummaryByUserId(req, res){
 
     try{
