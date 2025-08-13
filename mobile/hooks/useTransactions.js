@@ -1,8 +1,8 @@
 // React Custom Hook File
 import { useState, useCallback } from "react";
 import { Alert } from "react-native"
+import { API_URL } from "../constants/api";
 
-const API_URL = "https://joney.onrender.com/api";
 
 export const useTransactions = (userId) => {
     const [transactions, setTransactions] = useState([]);
